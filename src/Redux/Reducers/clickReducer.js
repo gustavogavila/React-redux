@@ -23,18 +23,20 @@ export const clickReducer = (state = initialState, action) => {
 };
 
 export const clickArrayReducer = (state = initialState, action) => {
-    debugger
+    // debugger
+    
     switch(action.type){
         case ARRAY_LIST:
-            return{
+        return {
                 ...state,
                 Pessoa: {
                     nome: action.payload[0],
                     email: action.payload[1]
                 }
             };
+        
         default: 
             return state;
     }
 }
-debugger
+// debugger

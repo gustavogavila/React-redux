@@ -9,7 +9,7 @@ export function clickButton(payload) {
 }
 
 export function clickButtonArray(payload){
-    debugger
+    // debugger
     return{
         type: ARRAY_LIST,
         payload

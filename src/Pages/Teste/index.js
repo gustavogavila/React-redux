@@ -14,24 +14,36 @@ class Teste extends Component {
             teste: '' 
         };
         this.handleSubmit = this.handleSubmit.bind(this);
+        
     }
 
     handleSubmit(event) {
         //alert('Nome: ' + this.state.nome +' Email: '+ this.state.email);
-        debugger
-        this.Pessoa = {
-            nome: this.state.nome,
-            email: this.state.email 
-        }
-        clickButtonArray(this.Pessoa);
-        debugger
+        // debugger
+        
+        // this.Pessoa = {
+        //     nome: this.state.nome,
+        //     email: this.state.email 
+        // }
+
+        this.Pessoa = [this.state.nome, this.state.email]
+        
+        this.props.clickButtonArray(this.Pessoa);
+        this.setState({Pessoa: [],
+            nome: '', 
+            email: '',
+            teste: ''})
+        // debugger
         //this.teste = Pessoa[0];
         event.preventDefault();        
     }
 
     render() {
-        const { email, Pessoa} = this.props;
+        // const { email, Pessoa} = this.props;
+        const { pessoa } = this.props;
+        
         return (
+            <div>
             <div className="home">
                 
                 <form onSubmit={this.handleSubmit} className="form">
@@ -42,19 +54,21 @@ class Teste extends Component {
                     <br />
                     <input type="submit" value="Enviar" />
                 </form>
-                <h1>{Pessoa.nome} {email}</h1>
+            </div>
+            <h1>{pessoa.nome} {pessoa.email}</h1>
             </div>
         );
     }
 }
-debugger
+// debugger
 const mapStateToProps = Store => ({
-    Pessoa: {
-        nome: Store.clickState.nome,
-        email: Store.clickState.email
-    }
+    // Pessoa: {
+    //     nome: Store.clickState.nome,
+    //     email: Store.clickState.email
+    // },
+    pessoa: Store.clickStateArray.Pessoa
 });
-debugger
+// debugger
 const mapDispatchToProps = dispatch => bindActionCreators({ clickButtonArray }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Teste);
